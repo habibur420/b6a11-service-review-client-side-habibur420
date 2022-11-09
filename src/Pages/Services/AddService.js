@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const AddService = () => {
 
@@ -40,6 +41,9 @@ const AddService = () => {
 
     return (
         <div className='py-24 bg-[#01141f] text-white'>
+        <Helmet>
+            <title>Add service photoGraphy</title>
+        </Helmet>
         <h1 className='text-center text-3xl mb-5 '>Add Your <span className='text-yellow-600 font-semibold'>PhotoGraphy</span> Services</h1>
             <form  onSubmit={handleAddService} className='md:w-4/5 mx-auto'>
                 <div className='md:flex gap-11'>

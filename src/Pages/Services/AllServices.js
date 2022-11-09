@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import ServicesCart from './ServicesCart';
 
 const AllServices = () => {
@@ -10,6 +11,9 @@ const AllServices = () => {
     }, [])
     return (
         <div>
+        <Helmet>
+            <title>All service photoGraphy</title>
+        </Helmet>
             {
                 services.length === 0 ?
                     <div className="flex justify-center items-center h-[100vh] bg-[#01141f]">

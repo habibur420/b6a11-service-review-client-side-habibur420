@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import ReviewCart from './ReviewCart';
+import { Helmet } from 'react-helmet-async';
 
 const MyReview = () => {
     const [reviews, setReviews] = useState([]);
-    const {_id} = reviews;
     const { user } = useContext(AuthContext)
 
     useEffect(() => {
@@ -30,6 +30,9 @@ const MyReview = () => {
 
     return (
         <div className='py-24 bg-[#010e1f] md:px-16 px-6 text-center text-white'>
+        <Helmet>
+            <title>My Review photoGraphy</title>
+        </Helmet>
             {
                 reviews.length === 0 ? <>
                     <h1 className='text-3xl font-semibold text-center text-white' >No Review here Please Added Review</h1>

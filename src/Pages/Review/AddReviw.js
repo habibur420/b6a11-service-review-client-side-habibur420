@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
@@ -40,6 +41,9 @@ const AddReviw = ({ id, ServiceName }) => {
 
     return (
         <div>
+        <Helmet>
+            <title>Service Details photoGraphy</title>
+        </Helmet>
             {
                 user?.email ?
                     <div className='py-11'>

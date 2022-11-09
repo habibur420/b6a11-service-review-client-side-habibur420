@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { FaCashRegister, FaGooglePlus } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logImage from '../../assets/login-img/login.png'
@@ -45,6 +46,9 @@ const Login = () => {
 
     return (
         <div className='py-24 md:flex md:flex-row  bg-[#01141f]'>
+        <Helmet>
+            <title>Login photoGraphy</title>
+        </Helmet>
             <div className='basis-1/2 flex justify-center items-center w-full'>
                 <div>
                     <img src={logImage} className='w-full' alt="" />
