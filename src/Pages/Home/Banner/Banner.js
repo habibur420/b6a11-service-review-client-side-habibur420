@@ -1,6 +1,8 @@
 import React from 'react';
 import banner from '../../../assets/home-img/banner2.png'
-import './Banner.css'
+import './Banner.css';
+import { FaAngleRight } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
     return (
@@ -10,7 +12,12 @@ const Banner = () => {
                     <h1 className='text-6xl text-left '>Professinal <br /> Photographer</h1>
                     <p className='text-xl mt-8 text-left text-gray-400'>Based in Amsterdam, I specialize in <br /> conceptual  photography and love to take photos with creativity and passion.</p>
                     <div className='text-left mt-4'>
-                        <button className='bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-12 rounded'>All service</button>
+                        <Link to='/services'>
+                            <button className='bg-yellow-600 w-72 flex items-center justify-center text-xl hover:bg-yellow-700 text-white font-bold py-2 px-12 rounded'>
+                                All service
+                                <FaAngleRight className='ml-6 hover:ml-8 duration-500' />
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>

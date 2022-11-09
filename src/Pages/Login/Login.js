@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FaCashRegister, FaGooglePlus } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logImage from '../../assets/login-img/login.png'
 import { AuthContext } from '../../contexts/AuthProvider';
 
@@ -8,15 +8,22 @@ const Login = () => {
 
     const { login, loginGoogle } = useContext(AuthContext);
 
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/'
+
+
+
     const handleLogin = (event) => {
         event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
+        const formIn = event.target;
+        const email = formIn.email.value;
+        const password = formIn.password.value;
         login(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, {replace: true} )
             })
             .catch(err => {
                 console.log(err.message)
@@ -28,6 +35,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, {replace: true})
             })
             .catch(err => {
                 console.log(err.message)
@@ -44,7 +52,7 @@ const Login = () => {
             </div>
             <div className='basis-1/2 flex justify-center items-center text-white'>
                 <div className=' w-full '>
-                    <h1 className='text-4xl text-gray-400'>Register</h1>
+                    <h1 className='text-4xl text-center text-gray-400'>Login</h1>
                     <form onSubmit={handleLogin} className='w-3/4 mx-auto'>
                         <div className="mb-3">
                             <label className=" block text-left text-gray-400 text-sm font-bold mb-2" htmlFor="username">
@@ -61,10 +69,10 @@ const Login = () => {
                         <div className='flex  text-center flex-col lg:flex-row  md:justify-evenly lg:gap-0 gap-3'>
                             <button type='submit' className='bg-yellow-600 flex items-center justify-center hover:bg-yellow-700 text-white font-bold py-2 px-10 rounded'>
                                 <FaCashRegister className='text-white text-3xl mr-2 rounded-lg' /> Login</button>
-                            <button onClick={handleGoogleLogin} className='bg-yellow-600 flex items-center justify-center hover:bg-yellow-700 text-white font-bold py-2 px-10 rounded'>
+                            <div onClick={handleGoogleLogin} className='bg-yellow-600 cursor-pointer flex items-center justify-center hover:bg-yellow-700 text-white font-bold py-2 px-10 rounded'>
                                 <FaGooglePlus className=' text-white text-3xl mr-2 rounded-lg  ' />
                                 Google
-                            </button>
+                            </div>
                         </div>
                         <p className='text-left my-3'>create an acccount Please <Link className='underline text-teal-500' to='/register'>Register</Link></p>
                     </form>

@@ -52,7 +52,7 @@ const handleGoogleLogin = () => {
             </div>
             <div className='basis-1/2 flex justify-center items-center text-white'>
                 <div className=' w-full '>
-                    <h1 className='text-4xl text-gray-400'>Register</h1>
+                    <h1 className='text-4xl text-center text-gray-400'>Register</h1>
                     <form onSubmit={handleRegister} className='w-3/4 mx-auto'>
                         <div className="mb-3">
                             <label className=" block text-left text-gray-400  text-sm font-bold mb-2" htmlFor="name">
@@ -81,10 +81,10 @@ const handleGoogleLogin = () => {
                         <div className='flex  text-center flex-col lg:flex-row  md:justify-evenly lg:gap-0 gap-3'>
                             <button type='submit' className='bg-yellow-600 flex justify-center items-center hover:bg-yellow-700 text-white font-bold py-2 px-10 rounded'>
                             <FaCashRegister className=' text-white text-3xl mr-2 rounded-lg  '/> Register</button>
-                            <button onClick={handleGoogleLogin} className='bg-yellow-600  flex justify-center items-center hover:bg-yellow-700 text-white font-bold py-2 px-10 rounded'>
+                            <div onClick={handleGoogleLogin} className='bg-yellow-600 cursor-pointer  flex justify-center items-center hover:bg-yellow-700 text-white font-bold py-2 px-10 rounded'>
                             <FaGooglePlus className=' text-white text-3xl mr-2 rounded-lg  ' />
                             Google
-                            </button>
+                            </div>
                         </div>
                         <p className='text-left my-3'>You have an alredy account please <Link className='underline text-teal-500' to='/login'>Login</Link></p>
                     </form>
