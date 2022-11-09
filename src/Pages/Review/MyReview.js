@@ -5,7 +5,7 @@ import ReviewCart from './ReviewCart';
 
 const MyReview = () => {
     const [reviews, setReviews] = useState([]);
-
+    const {_id} = reviews;
     const { user } = useContext(AuthContext)
 
     useEffect(() => {
@@ -16,6 +16,16 @@ const MyReview = () => {
             })
     }, [user?.email])
 
+    const handleDelete = id => {
+        fetch(`http://localhost:5000/orders/${id}`, {
+                method: 'DELETE',
+            })
+            .then(res => res.json())
+            .then(data => {
+                const remaining = reviews.filter(odr => odr._id !== id);
+                        setReviews(remaining);
+            })
+    }
 
 
     return (
@@ -25,7 +35,7 @@ const MyReview = () => {
                     <h1 className='text-3xl font-semibold text-center text-white' >No Review here Please Added Review</h1>
                     <Link to='/'>
                         <button type='submit' className='bg-yellow-600 mt-5 hover:bg-yellow-700 text-white font-bold py-2 px-10 rounded'>
-                           Back To Homepage
+                            Back To Homepage
                         </button>
                     </Link>
                 </>
@@ -36,6 +46,7 @@ const MyReview = () => {
                     reviews.map(review => <ReviewCart
                         key={review._id}
                         review={review}
+                        handleDelete={handleDelete}
                     />)
                 }
             </div>

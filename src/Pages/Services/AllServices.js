@@ -12,9 +12,9 @@ const AllServices = () => {
         <div>
             {
                 services.length === 0 ?
-                    <div class="flex justify-center items-center h-[100vh] bg-[#01141f]">
-                        <div class="spinner-border animate-spin inline-block w-12 h-12 border-4 rounded-full" role="status">
-                            <span class="visually-hidden"></span>
+                    <div className="flex justify-center items-center h-[100vh] bg-[#01141f]">
+                        <div className="spinner-border animate-spin inline-block w-12 h-12 border-4 rounded-full" role="status">
+                            <span className="visually-hidden"></span>
                         </div>
                     </div> :
                     <div className='bg-[#01141f] text-white py-24  md:px-16 px-7'>
