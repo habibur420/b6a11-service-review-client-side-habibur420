@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import regImage from '../../assets/register-img/register.png';
 import { FaCashRegister, FaGooglePlus} from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
 
+    const navigate = useNavigate()
     const {createUser, updataUserProfile, loginGoogle} = useContext(AuthContext);
 
     const handleRegister = (event) => {
@@ -22,7 +23,10 @@ const Register = () => {
             console.log(user)
             // updataProfile 
             updataUserProfile(name, photo)
-            .then()
+            .then(res => {
+                form.reset()
+                navigate('/')
+            })
             .catch()
         })
         .catch(err => {
@@ -35,6 +39,7 @@ const handleGoogleLogin = () => {
     .then(result => {
         const user = result.user;
         console.log(user);
+        navigate('/')
     })
     .catch(err => {
         console.log(err.message)

@@ -23,8 +23,26 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
-                navigate(from, {replace: true} )
+
+                const currentUser = {
+                    email: user.email,
+                }
+
+
+                // get jwt token here 
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem('photography-token', data.token);
+                        navigate(from, { replace: true });
+                    });
             })
             .catch(err => {
                 console.log(err.message)
@@ -36,7 +54,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from, {replace: true})
+                navigate(from, { replace: true })
+                from.reset()
             })
             .catch(err => {
                 console.log(err.message)
@@ -46,9 +65,9 @@ const Login = () => {
 
     return (
         <div className='py-24 md:flex md:flex-row  bg-[#01141f]'>
-        <Helmet>
-            <title>Login photoGraphy</title>
-        </Helmet>
+            <Helmet>
+                <title>Login photoGraphy</title>
+            </Helmet>
             <div className='basis-1/2 flex justify-center items-center w-full'>
                 <div>
                     <img src={logImage} className='w-full' alt="" />

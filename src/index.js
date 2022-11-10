@@ -6,12 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import AuthProvider from './contexts/AuthProvider';
 import 'react-photo-view/dist/react-photo-view.css';
 import { HelmetProvider } from 'react-helmet-async';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthProvider>
       <HelmetProvider>
+      <ToastContainer position='top-center' />
       <App />
       </HelmetProvider>
     </AuthProvider>

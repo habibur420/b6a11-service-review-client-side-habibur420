@@ -4,6 +4,7 @@ import Home from '../../Pages/Home/Home/Home'
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
 import MyReview from "../../Pages/Review/MyReview";
+import UpdateReview from "../../Pages/Review/UpdateReview";
 import AddService from "../../Pages/Services/AddService";
 import AllServices from "../../Pages/Services/AllServices";
 import ServiceDetails from "../../Pages/Services/ServiceDetails";
@@ -13,36 +14,41 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
-        children:[
+        children: [
             {
                 path: '/',
                 element: <Home></Home>
             },
             {
                 path: 'login',
-                element: <Login/>
+                element: <Login />
             },
             {
                 path: 'register',
-                element: <Register/>
+                element: <Register />
             },
             {
-                path:'/services',
-                element: <AllServices/>
+                path: '/services',
+                element: <AllServices />
             },
             {
                 path: 'service/details/:id',
-                element: <ServiceDetails/>,
+                element: <ServiceDetails />,
                 loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`)
             },
             {
                 path: 'add/service',
-                element: <PrivateRoutes><AddService/></PrivateRoutes>,
+                element: <PrivateRoutes><AddService /></PrivateRoutes>,
 
             },
             {
                 path: 'my/review',
-                element: <PrivateRoutes><MyReview/></PrivateRoutes>
+                element: <PrivateRoutes><MyReview /></PrivateRoutes>
+            },
+            {
+                path: '/review/update/:id',
+                element: <UpdateReview />,
+                loader: ({params}) => fetch(`http://localhost:5000/review/${params.id}`)
             }
 
 

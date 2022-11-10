@@ -6,33 +6,43 @@ import { Helmet } from 'react-helmet-async';
 
 const MyReview = () => {
     const [reviews, setReviews] = useState([]);
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/review?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/review?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('photography-token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut();
+                }
+                return res.json();
+            })
             .then(data => {
                 setReviews(data)
             })
-    }, [user?.email])
+    }, [user?.email, logOut])
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/orders/${id}`, {
-                method: 'DELETE',
-            })
+        fetch(`http://localhost:5000/review/${id}`, {
+            method: 'DELETE',
+        })
             .then(res => res.json())
             .then(data => {
                 const remaining = reviews.filter(odr => odr._id !== id);
-                        setReviews(remaining);
+                setReviews(remaining);
+                console.log(data)
             })
     }
 
 
     return (
         <div className='py-24 bg-[#010e1f] md:px-16 px-6 text-center text-white'>
-        <Helmet>
-            <title>My Review photoGraphy</title>
-        </Helmet>
+            <Helmet>
+                <title>My Review photoGraphy</title>
+            </Helmet>
             {
                 reviews.length === 0 ? <>
                     <h1 className='text-3xl font-semibold text-center text-white' >No Review here Please Added Review</h1>

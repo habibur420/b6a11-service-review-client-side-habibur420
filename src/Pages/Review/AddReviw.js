@@ -33,7 +33,12 @@ const AddReviw = ({ id, ServiceName }) => {
             body: JSON.stringify(review)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                if(data.acknowledged){
+                    form.reset()
+                }
+                console.log(data)
+            })
             .catch(er => console.error(er));
 
     }

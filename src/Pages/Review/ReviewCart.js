@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../../assets/navbar-logo/profile.png';
 import { FaTimes } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const ReviewCart = ({ review, handleDelete }) => {
     const { _id, name, email, text, photo, ServiceName } = review;
@@ -10,6 +11,11 @@ const ReviewCart = ({ review, handleDelete }) => {
                 <div onClick={() => handleDelete(_id)} className='absolute cursor-pointer text-3xl top-5 right-5'>
                     <FaTimes />
                 </div>
+                <Link to={`/review/update/${_id}`}>
+                    <div className='absolute cursor-pointer top-5 right-16'>
+                        <button>Update</button>
+                    </div>
+                </Link>
                 <div className='flex justify-center'>
                     <img className='w-16 rounded-full border-yellow-500 p-1' src={photo ? photo : logo} alt="" />
                 </div>
