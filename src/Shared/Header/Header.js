@@ -13,6 +13,7 @@ const Header = () => {
     const links = [
         { id: 1, name: "Add Service", link: '/add/service' },
         { id: 2, name: "My Review", link: '/my/review' },
+        { id: 3, name: "Blog", link: '/blog' }
     ];
 
 
