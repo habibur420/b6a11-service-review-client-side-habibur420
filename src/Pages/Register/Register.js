@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import regImage from '../../assets/register-img/register.png';
 import { FaCashRegister, FaGooglePlus} from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
-
+    const [error, setError] = useState('')
     const navigate = useNavigate()
     const {createUser, updataUserProfile, loginGoogle} = useContext(AuthContext);
 
@@ -24,13 +24,16 @@ const Register = () => {
             // updataProfile 
             updataUserProfile(name, photo)
             .then(res => {
+                setError('')
                 form.reset()
                 navigate('/')
             })
-            .catch()
+            .catch(err => {
+                setError(err.message)
+            })
         })
         .catch(err => {
-            console.log(err.message)
+            setError(err.message)
         })
     }
 
@@ -40,9 +43,11 @@ const handleGoogleLogin = () => {
         const user = result.user;
         console.log(user);
         navigate('/')
+        setError('')
     })
     .catch(err => {
         console.log(err.message)
+        setError(err.message)
     })
 }
 
@@ -87,6 +92,7 @@ const handleGoogleLogin = () => {
                             </label>
                             <input name='password' className="shadow block border rounded bg-[#01141f]  w-full py-2 px-3 text-gray-400 focus:outline-yellow-600 "  type="password" placeholder="Password" />
                         </div>
+                        <p className='text-red-600'>{error}</p>
                         <div className='flex  text-center flex-col lg:flex-row  md:justify-evenly lg:gap-0 gap-3'>
                             <button type='submit' className='bg-yellow-600 flex justify-center items-center hover:bg-yellow-700 text-white font-bold py-2 px-10 rounded'>
                             <FaCashRegister className=' text-white text-3xl mr-2 rounded-lg  '/> Register</button>

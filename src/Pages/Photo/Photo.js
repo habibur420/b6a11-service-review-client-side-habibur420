@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import photo from '../../assets/home-img/photo.jpg'
 
 const Photo = () => {
@@ -12,9 +13,11 @@ const Photo = () => {
                     <h1 className='lg:text-6xl md:text-5xl text-4xl font-semibold'>Why I fell in love with photography</h1>
                     <p className='mt-8'>Recent campaigns have included food photography, video and animations for Rowse Honey, drinks photography
                         Marks & Spencer, Breyers Ice Cream, Phillips Shavers, Waitrose Wine as well as portraits for The Department of</p>
+                    <Link to='/add/service'>
                     <button className='bg-yellow-600 mt-4 text-xl hover:bg-yellow-700 text-white font-bold py-2 px-12 rounded'>
                         Add service
                     </button>
+                    </Link>
 
                 </div>
             </div>

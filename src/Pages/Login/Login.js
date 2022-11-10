@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaCashRegister, FaGooglePlus } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 const Login = () => {
 
     const { login, loginGoogle } = useContext(AuthContext);
+    const [error, setError] = useState('')
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -40,12 +41,13 @@ const Login = () => {
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
+                        setError('')
                         localStorage.setItem('photography-token', data.token);
                         navigate(from, { replace: true });
                     });
             })
             .catch(err => {
-                console.log(err.message)
+                setError(err.message)
             })
     }
 
@@ -56,9 +58,10 @@ const Login = () => {
                 console.log(user);
                 navigate(from, { replace: true })
                 from.reset()
+                setError('')
             })
             .catch(err => {
-                console.log(err.message)
+                setError(err.message)
             })
     }
 
@@ -83,12 +86,14 @@ const Login = () => {
                             </label>
                             <input name='email' className="shadow block border rounded bg-[#01141f]  w-full py-2 px-3 text-gray-700 focus:outline-yellow-600 " type="email" placeholder="Email" required />
                         </div>
+                        
                         <div className="mb-3">
                             <label className=" block text-left text-gray-400 text-sm font-bold mb-2" htmlFor="username">
                                 Password
                             </label>
                             <input name='password' className="shadow block border rounded bg-[#01141f]  w-full py-2 px-3 text-gray-700 focus:outline-yellow-600 " type="password" placeholder="Password" />
                         </div>
+                        <p className='text-red-500'>{error}</p>
                         <div className='flex  text-center flex-col lg:flex-row  md:justify-evenly lg:gap-0 gap-3'>
                             <button type='submit' className='bg-yellow-600 flex items-center justify-center hover:bg-yellow-700 text-white font-bold py-2 px-10 rounded'>
                                 <FaCashRegister className='text-white text-3xl mr-2 rounded-lg' /> Login</button>

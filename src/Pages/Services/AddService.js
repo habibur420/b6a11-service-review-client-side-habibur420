@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { toast } from 'react-toastify';
 
 const AddService = () => {
 
@@ -32,7 +33,8 @@ const AddService = () => {
         .then(res => res.json())
         .then(data => {
             if(data.acknowledged){
-                form.reset()
+                form.reset();
+                toast.success('Successfully Added Services!!!');
             }
             console.log(data)
         })
