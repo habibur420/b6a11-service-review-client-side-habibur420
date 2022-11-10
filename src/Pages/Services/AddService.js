@@ -22,7 +22,7 @@ const AddService = () => {
             description
         }
 
-        fetch('http://localhost:5000/services',{
+        fetch('https://server-habibur420.vercel.app/services',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

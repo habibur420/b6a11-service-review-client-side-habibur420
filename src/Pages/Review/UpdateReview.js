@@ -11,7 +11,7 @@ const UpdateReview = () => {
 
 const handleOnSubmit = e => {
     e.preventDefault()
-    fetch(`http://localhost:5000/review/${reviews?._id}`, {
+    fetch(`https://server-habibur420.vercel.app/review/${reviews?._id}`, {
         method: 'PUT',
         headers: {
             'content-type': 'application/json'

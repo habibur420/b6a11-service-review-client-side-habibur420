@@ -14,7 +14,8 @@ const AddReviw = ({ id, ServiceName }) => {
         const text = form.text.value;
         const photo = user.photoURL;
 
-        console.log(ServiceName)
+        const date = new Date()
+        console.log(date)
 
         const review = {
             service: id,
@@ -25,7 +26,7 @@ const AddReviw = ({ id, ServiceName }) => {
             ServiceName,
         }
 
-        fetch(`http://localhost:5000/review`, {
+        fetch(`https://server-habibur420.vercel.app/review`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

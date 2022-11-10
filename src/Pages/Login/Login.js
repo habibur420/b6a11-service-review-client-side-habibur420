@@ -30,7 +30,7 @@ const Login = () => {
 
 
                 // get jwt token here 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://server-habibur420.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

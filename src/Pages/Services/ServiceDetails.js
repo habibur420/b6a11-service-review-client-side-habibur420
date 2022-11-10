@@ -8,13 +8,15 @@ const ServiceDetails = () => {
     const { _id, name, img, description, price, title } = useLoaderData();
     const [reviews, setReview] = useState([]);
 
+    console.log(reviews)
+
     useEffect(() => {
-        fetch(`http://localhost:5000/review?id=${_id}`)
+        fetch(`https://server-habibur420.vercel.app/review?id=${_id}`)
             .then(res => res.json())
             .then(data => {
                 setReview(data)
             })
-    }, [_id, reviews])
+    }, [_id,])
 
 
 
@@ -47,7 +49,7 @@ const ServiceDetails = () => {
                 </div>
                 <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 '>
                     {
-                        reviews.map(review => <Review
+                        reviews?.map(review => <Review
                             key={review._id}
                             review={review}
                         ></Review>)
